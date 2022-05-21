@@ -4,8 +4,7 @@ import Cell from "../Cell/Cell";
 
 export default function Board({refreshStatus, changeRefreshStatus, quantityOfCells, changeBombsInfo, changeEndGameStatus, endGame}) {
     //tech constants
-    const CELL_WITH_BOMB_ID = 101;
-    const CELL_WITHOUT_BOMB_ID = 111;
+    const CELL_WITH_BOMB_ID = 111;
     const GUESS_CELL_ID = 222;
 
     //game-board state
@@ -137,7 +136,7 @@ export default function Board({refreshStatus, changeRefreshStatus, quantityOfCel
         if (board[i + 1] !== undefined && board[i + 1][g + 1] !== undefined && board[i + 1][g + 1][0] === 1) bombQuantity++;
         if (board[i + 1] !== undefined && board[i + 1][g - 1] !== undefined && board[i + 1][g - 1][0] === 1) bombQuantity++;
         if (board[i - 1] !== undefined && board[i - 1][g + 1] !== undefined && board[i - 1][g + 1][0] === 1) bombQuantity++;
-        board[i][g][1] = bombQuantity === 0 ? CELL_WITHOUT_BOMB_ID : bombQuantity;
+        board[i][g][1] = bombQuantity === 0 ? 0 : bombQuantity;
     }
 
 
@@ -146,7 +145,7 @@ export default function Board({refreshStatus, changeRefreshStatus, quantityOfCel
         if (board[i] === undefined || board[i][g] === undefined || board[i][g][1] !== '') return;
         countBombs(board, i, g);
         //return, if cell has quantity of bombs around this cell
-        if (board[i][g][1] !== '' && board[i][g][1] !== CELL_WITHOUT_BOMB_ID) return;
+        if (board[i][g][1] !== 0) return;
         //check different directions
         if (board[i - 1] !== undefined && board[i - 1][g] !== undefined && board[i - 1][g][1] === '') findEmptyCell(board, i - 1, g);
         if (board[i + 1] !== undefined && board[i + 1][g] !== undefined && board[i + 1][g][1] === '') findEmptyCell(board, i + 1, g);
@@ -165,8 +164,8 @@ export default function Board({refreshStatus, changeRefreshStatus, quantityOfCel
                 return <div className="row" key={i}>{
                     boardState[i].map((x, g) => {
                         return <Cell 
-                        quantityOfBombs={boardState[i][g][1] !== '' && boardState[i][g][1] > 10 ? '' : boardState[i][g][1]}
-                        colorOfCell={boardState[i][g][1]}
+                        quantityOfBombs={boardState[i][g][1] > 8 || boardState[i][g][1] < 1 ? '' : boardState[i][g][1]}
+                        colorOfCell={boardState[i][g][1] > 8 || boardState[i][g][1] < 1 ? boardState[i][g][1] : ''}
                         clickOnCells={clickOnCells}
                         endGame = {endGame}
                         refreshStatus = {refreshStatus}
