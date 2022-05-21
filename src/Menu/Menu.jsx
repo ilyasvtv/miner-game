@@ -8,14 +8,14 @@ export default function Menu({setQuantityOfCells, bombsInfo}) {
     function heightHandler(e) {
         let newValue = +e.target.value;
         if (newValue < 1) newValue = 1;
-        if (newValue > 50) newValue = 50;
+        if (newValue > 30) newValue = 30;
         setHeight(newValue);
     }
 
     function widthHandler(e) {
         let newValue = +e.target.value;
         if (newValue < 1) newValue = 1;
-        if (newValue > 50) newValue = 50;
+        if (newValue > 30) newValue = 30;
         setWidth(newValue);
     }
 
