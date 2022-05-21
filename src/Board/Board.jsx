@@ -98,20 +98,8 @@ export default function Board({refreshStatus, changeRefreshStatus, quantityOfCel
             changeEndGameStatus();
             return;
         }
-        //count all mines around a cell
-        countBombs(board, i, g);
-        setBoard(board);
-        //return, if cell has number of quntity mines around the cell
-        if (board[i][g][1] !== CELL_WITHOUT_BOMB_ID) return;
         //find all mines in all directions until first cells with numbers
-        findEmptyCell(board, i - 1, g);
-        findEmptyCell(board, i + 1, g);
-        findEmptyCell(board, i, g + 1);
-        findEmptyCell(board, i, g - 1);
-        findEmptyCell(board, i - 1, g + 1);
-        findEmptyCell(board, i + 1, g - 1);
-        findEmptyCell(board, i + 1, g + 1);
-        findEmptyCell(board, i - 1, g - 1);
+        findEmptyCell(board, i, g);
         setBoard(board);
     }
 
