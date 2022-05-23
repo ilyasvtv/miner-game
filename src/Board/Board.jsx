@@ -136,7 +136,7 @@ export default function Board({refreshStatus, changeRefreshStatus, quantityOfCel
         if (board[i + 1] !== undefined && board[i + 1][g + 1] !== undefined && board[i + 1][g + 1][0] === 1) bombQuantity++;
         if (board[i + 1] !== undefined && board[i + 1][g - 1] !== undefined && board[i + 1][g - 1][0] === 1) bombQuantity++;
         if (board[i - 1] !== undefined && board[i - 1][g + 1] !== undefined && board[i - 1][g + 1][0] === 1) bombQuantity++;
-        board[i][g][1] = bombQuantity === 0 ? 0 : bombQuantity;
+        board[i][g][1] = bombQuantity;
     }
 
 
